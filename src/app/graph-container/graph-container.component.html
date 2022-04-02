@@ -1,4 +1,7 @@
-<app-network-txt-input (data)="data($event)"></app-network-txt-input>
-<button class="btn" (click)="graphContainerService.stop()">STOP</button>
-<button class="btn" (click)="graphContainerService.start()">START</button>
-<app-graph [elements]="graphContainerService.elementsToLoad"></app-graph>
+<div class="container">
+    <app-network-txt-input (data)="data($event)"></app-network-txt-input>
+    <button class="btn" (click)="graphContainerService.stop()">STOP</button>
+    <button class="btn" (click)="graphContainerService.start()">START</button>
+    <app-stepper></app-stepper>
+    <app-graph [elements]="graphContainerService.elementsToLoad"></app-graph>
+</div>

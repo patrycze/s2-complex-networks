@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {generation, originalElements} from "./graph-container.component.config";
 import {ElementDefinition} from "cytoscape";
 
 @Injectable()
@@ -30,34 +29,6 @@ export class GraphContainerService {
   public start(): void {
     this.shouldInputNewElements = true;
   }
-
-  // public pushRandomNodeToOriginalElements(): any[] {
-  //   const newGeneration = generation + 1;
-  //   // const randomNode = shuffle(this.originalElements).find(
-  //   //   element => !element.data.source
-  //   // );
-  //   //
-  //   // const newNode = {
-  //   //   data: {
-  //   //     id: `node-${uuidv4()}`,
-  //   //     generation: newGeneration
-  //   //   }
-  //   // };
-  //   //
-  //   // this.originalElements = [
-  //   //   ...this.originalElements,
-  //   //   newNode,
-  //   //   {
-  //   //     data: {
-  //   //       id: `edge-${uuidv4()}`,
-  //   //       source: randomNode!.data.id,
-  //   //       target: newNode.data.id,
-  //   //       generation: newGeneration
-  //   //     }
-  //   //   }];
-  //
-  //   return this._originalElements;
-  // }
 
   public pushRandomNodeToOriginalElements(): void {
     if(this._originalElements) {

@@ -4,41 +4,45 @@ import {Layouts, Core, ElementDefinition} from "cytoscape";
 import {Stylesheet} from "cytoscape";
 import cola from "cytoscape-cola";
 import {style} from "./graph.config";
+import {GraphService} from "./graph.service";
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss']
+  styleUrls: ['./graph.component.scss'],
 })
 export class GraphComponent implements OnInit {
 
-  private graph!: Core;
-  private layout!: Layouts;
+  constructor(public graphService: GraphService) {
+  }
 
   @ViewChild('cy') cy!: ElementRef;
   @Input() set elements(elements: ElementDefinition[]) {
-    if (this.graph) {
-      if (this.layout) {
-        this.layout.stop();
+    if (this.graphService.graph) {
+
+      this.graphService.onNodeSelect()
+
+      if (this.graphService.layout) {
+        this.graphService.layout.stop();
       }
 
-      this.graph.add(elements);
+      this.graphService.graph.add(elements);
 
-      this.layout = this.graph.elements().makeLayout({
+      this.graphService.layout = this.graphService.graph.elements().makeLayout({
         name: "cola"
       });
 
-      this.layout.run();
+      this.graphService.layout.run();
 
     }
 
 
-    if (!this.graph) {
+    if (!this.graphService.graph) {
 
       cytoscape?.use(cola);
 
       if(this.cy) {
-        this.graph = cytoscape({
+        this.graphService.graph = cytoscape({
           elements: elements,
           style: style as Stylesheet[],
           maxZoom: 0.5,
@@ -46,13 +50,10 @@ export class GraphComponent implements OnInit {
           container: this.cy.nativeElement
         });
       }
-
-
     }
   };
 
   ngOnInit(): void {
-
   }
 
 }
