@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GraphContainerService} from "./graph-container.service";
-import {StepperService} from "../widgets /stepper/stepper.service";
+import {StepperService} from "../widgets/stepper/stepper.service";
 
 @Component({
   selector: 'app-graph-container',
@@ -23,5 +23,4 @@ export class GraphContainerComponent implements OnInit {
       }
     },100)
   }
-
 }
